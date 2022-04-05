@@ -1,24 +1,12 @@
 <?php
-/**
- * Реализовать проверку заполнения обязательных полей формы в предыдущей
- * с использованием Cookies, а также заполнение формы по умолчанию ранее
- * введенными значениями.
- */
 
-// Отправляем браузеру правильную кодировку,
-// файл index.php должен быть в кодировке UTF-8 без BOM.
 header('Content-Type: text/html; charset=UTF-8');
 
-// В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
-// и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  // Массив для временного хранения сообщений пользователю.
+  
   $messages = array();
 
-  // В суперглобальном массиве $_COOKIE PHP хранит все имена и значения куки текущего запроса.
-  // Выдаем сообщение об успешном сохранении.
   if (!empty($_COOKIE['save'])) {
-    // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('save', '', 100000);
     // Если есть параметр save, то выводим сообщение пользователю.
     $messages[] = 'Спасибо, результаты сохранены.';
@@ -26,21 +14,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
   // Складываем признак ошибок в массив.
   $errors = array();
-  $errors['fio'] = !empty($_COOKIE['fio_error']);
+  $errors['field-name'] = !empty($_COOKIE['name_error']);
+  $errors['field-email'] = !empty($_COOKIE['email_error']);
+  $errors['field-bio'] = !empty($_COOKIE['bio_error']);
   // TODO: аналогично все поля.
 
   // Выдаем сообщения об ошибках.
-  if ($errors['fio']) {
-    // Удаляем куку, указывая время устаревания в прошлом.
+  if ($errors['field-name']) {
     setcookie('fio_error', '', 100000);
-    // Выводим сообщение.
     $messages[] = '<div class="error">Заполните имя.</div>';
+  }
+  if ($errors['field-email']) {
+    setcookie('email_error', '', 100000);
+    $messages[] = '<div class="error">Заполните имейл.</div>';
+  }
+  if ($errors['field-bio']) {
+    setcookie('bio_error', '', 100000);
+    $messages[] = '<div class="error">Заполните биографию.</div>';
   }
   // TODO: тут выдать сообщения об ошибках в других полях.
 
   // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
-  $values['fio'] = empty($_COOKIE['fio_value']) ? '' : $_COOKIE['fio_value'];
+  $values['field-name'] = empty($_COOKIE['name_value']) ? '' : $_COOKIE['name_value'];
+  $values['field-email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
+  $values['field-bio'] = empty($_COOKIE['bio_value']) ? '' : $_COOKIE['bio_value'];
   // TODO: аналогично все поля.
 
   // Включаем содержимое файла form.php.
