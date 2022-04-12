@@ -143,6 +143,7 @@ if (!empty($messages)) {
                 option.innerHTML = i;
                 option.value = i;
                 ddlYears.appendChild(option);
+		    if ($_COOKIE['year_value']
             }
         };
     </script>
