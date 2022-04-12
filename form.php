@@ -43,7 +43,7 @@ textarea {
 .error {
     border: 3px solid red;
   }
-<style>
+</style>
 <?php
 if (!empty($messages)) {
   print('<div id="messages">');
