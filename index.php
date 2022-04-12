@@ -167,7 +167,17 @@ else {
   else {
     setcookie('bio_value', $_POST['field-bio'], time() + 12 * 30 * 24 * 60 * 60);
     setcookie('bio_error', '', 100000);
-  }  
+  }
+  
+  if(!isset($_POST['checkbox'])){
+  setcookie('check_error','1',time()+ 24 * 60 * 60);
+  setcookie('check_value', '', 100000);
+  $errors=TRUE;
+}
+else{
+  setcookie('check_value', TRUE,time()+ 12 * 30 * 24 * 60 * 60);
+  setcookie('check_error','',100000);
+}
 
 // *************
 // TODO: тут необходимо проверить правильность заполнения всех остальных полей.
