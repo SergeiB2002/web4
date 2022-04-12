@@ -91,8 +91,6 @@ if (!empty($messages)) {
 		
 	  Количество конечностей:<br />
      <div <?php if ($errors['radio-limb']) {print 'class="error"';} ?>>
-      <label><input type="radio" name="radio-limb" value="0" />
-        0</label>
       <label><input type="radio" name="radio-limb" value="1" 
 	<?php if($values['radio-limb']=="1") {print 'checked';} ?> />
         1</label>
