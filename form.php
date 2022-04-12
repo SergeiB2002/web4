@@ -80,39 +80,32 @@ if (!empty($messages)) {
       </label><br />
 	  
 	  Пол:<br />
-	<div <?php if ($errors['radio-pol']) {print 'class="error"';} ?>>
-      <label> <input type="radio" checked="checked"
-        name="radio-pol" value="man" 
+     <div <?php if ($errors['radio-pol']) {print 'class="error"';} ?>>
+      <label> <input type="radio" name="radio-pol" value="man" 
 	<?php if($values['radio-pol']=="man") {print 'checked';} ?> />
         Мужской </label>
-      <label><input type="radio"
-        name="radio-pol" value="woman" 
+      <label><input type="radio" name="radio-pol" value="woman" 
 	<?php if($values['radio-pol']=="woman") {print 'checked';} ?> />
         Женский</label><br />
-        </div>
+     </div>
 		
 	  Количество конечностей:<br />
-	<div <?php if ($errors['radio-limb']) {print 'class="error"';} ?>>
-      <label><input type="radio"
-        name="radio-limb" value="0" />
+     <div <?php if ($errors['radio-limb']) {print 'class="error"';} ?>>
+      <label><input type="radio" name="radio-limb" value="0" />
         0</label>
-      <label><input type="radio"
-        name="radio-limb" value="1" 
+      <label><input type="radio" name="radio-limb" value="1" 
 	<?php if($values['radio-limb']=="1") {print 'checked';} ?> />
         1</label>
-	  <label><input type="radio"
-        name="radio-limb" value="2" 
+      <label><input type="radio"name="radio-limb" value="2" 
 	<?php if($values['radio-limb']=="2") {print 'checked';} ?> />
         2</label>
-	  <label><input type="radio"
-        name="radio-limb" value="3" 
+      <label><input type="radio" name="radio-limb" value="3" 
 	<?php if($values['radio-limb']=="3") {print 'checked';} ?> />
         3</label>
-	  <label><input type="radio" checked="checked"
-        name="radio-limb" value="4" 
+      <label><input type="radio" name="radio-limb" value="4" 
 	<?php if($values['radio-limb']=="4") {print 'checked';} ?> />
         4</label><br />
-	</div>
+      </div>
 		
 	  <label>
         Сверхспособности:
