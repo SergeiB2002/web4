@@ -16,8 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors = array();
   $errors['field-name'] = !empty($_COOKIE['name_error']);
   $errors['field-email'] = !empty($_COOKIE['email_error']);
+  $errors['year'] = !empty($_COOKIE['year_error']);
+  $errors['radio-pol'] = !empty($_COOKIE['pol_error']);
+  $errors['radio-limb'] = !empty($_COOKIE['limb_error']);
+  $errors['field-super'] = !empty($_COOKIE['super_error']);
   $errors['field-bio'] = !empty($_COOKIE['bio_error']);
-  // TODO: аналогично все поля.
+  $errors['checkbox'] = !empty($_COOKIE['check_error']);
 
   // Выдаем сообщения об ошибках.
   if ($errors['field-name']) {
@@ -28,11 +32,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie('email_error', '', 100000);
     $messages[] = '<div class="error">Заполните имейл.</div>';
   }
+  if ($errors['year']) {
+    setcookie('year_error', '', 100000);
+    $messages[] = '<div class="error">Выберите год.</div>';
+  }
+  if ($errors['radio-pol']) {
+    setcookie('pol_error', '', 100000);
+    $messages[] = '<div class="error">Выберите пол.</div>';
+  }
+  if ($errors['radio-limb']) {
+    setcookie('limb_error', '', 100000);
+    $messages[] = '<div class="error">Укажите кол-во конечностей.</div>';
+  }
+  if ($errors['field-super']) {
+    setcookie('super_error', '', 100000);
+    $messages[] = '<div class="error">Выберите суперспособности(хотя бы одну).</div>';
+  }
   if ($errors['field-bio']) {
     setcookie('bio_error', '', 100000);
     $messages[] = '<div class="error">Заполните биографию.</div>';
   }
-  // TODO: тут выдать сообщения об ошибках в других полях.
+  if ($errors['checkbox']) {
+    setcookie('check_error', '', 100000);
+    $messages[] = '<div class="error">Вы должны болеть за Red Bull Racing.</div>';
+  }
+  
 
   // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
