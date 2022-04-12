@@ -146,7 +146,7 @@ else {
     $apw=array(
       "immortal_value"=>0,
       "noclip_value"=>0,
-      "power_value"=>0
+      "power_value"=>0,
       "telepat_value"=>0
     );
   foreach($powrs as $pwer){
