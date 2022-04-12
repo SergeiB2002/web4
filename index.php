@@ -115,8 +115,8 @@ else {
   setcookie('pol_value', '', 100000);
   $errors = TRUE;
 }
-else {
-  setcookie('pol_value', $_POST['radio-pol'], time() + 12*30 * 24 * 60 * 60);
+  else {
+  setcookie('pol_value', $_POST['radio-pol'], time() + 12 * 30 * 24 * 60 * 60);
   setcookie('pol_error','',100000);
 }
   
@@ -125,8 +125,8 @@ else {
   setcookie('limb_value', '', 100000);
   $errors = TRUE;
 }
-else {
-  setcookie('limb_value', $_POST['radio-limb'], time() + 12*30 * 24 * 60 * 60);
+  else {
+  setcookie('limb_value', $_POST['radio-limb'], time() + 12 * 30 * 24 * 60 * 60);
   setcookie('limb_error','',100000);
 }
   
@@ -138,7 +138,7 @@ else {
   setcookie('telepat_value', '', 100000);
   $errors = TRUE;
 }
-else {
+  else {
   $powrs=$_POST['field-super'];
   $apw=array(
     "immortal_value"=>0,
@@ -147,16 +147,27 @@ else {
     "telepat_value"=>0
   );
   foreach($powrs as $pwer){
-    if($pwer=='бессмертие'){setcookie('immortal_value', 1, time() + 12*30 * 24 * 60 * 60); $apw['immortal_value']=1;} 
-    if($pwer=='прохождение сквозь стены'){setcookie('ghost_value', 1, time() + 12*30 * 24 * 60 * 60);$apw['ghost_value']=1;} 
-    if($pwer=='левитация'){setcookie('levitation_value', 1, time() + 12*30 * 24 * 60 * 60);$apw['levitation_value']=1;} 
+    if($pwer=='immortal'){setcookie('immortal_value', 1, time() + 12 * 30 * 24 * 60 * 60); $apw['immortal_value']=1;} 
+    if($pwer=='noclip'){setcookie('noclip_value', 1, time() + 12*30 * 24 * 60 * 60);$apw['noclip_value']=1;} 
+    if($pwer=='power'){setcookie('power_value', 1, time() + 12*30 * 24 * 60 * 60);$apw['power_value']=1;} 
+    if($pwer=='telepat'){setcookie('telepat_value', 1, time() + 12*30 * 24 * 60 * 60);$apw['telepat_value']=1;}
   }
-  foreach($a as $c=>$val){
+  foreach($apw as $c=>$val){
     if($val==0){
       setcookie($c,'',100000);
     }
   }
 }
+  
+  if (empty($_POST['field-bio'])) {
+    setcookie('bio_error', '1', time() + 24 * 60 * 60);
+    setcookie('bio_value', '', 100000);
+    $errors = TRUE;
+  }
+  else {
+    setcookie('bio_value', $_POST['field-bio'], time() + 12 * 30 * 24 * 60 * 60);
+    setcookie('bio_error', '', 100000);
+  }  
 
 // *************
 // TODO: тут необходимо проверить правильность заполнения всех остальных полей.
