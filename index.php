@@ -1,7 +1,10 @@
 <?php
-
+// Отправляем браузеру правильную кодировку,
+// файл index.php должен быть в кодировке UTF-8 без BOM.
 header('Content-Type: text/html; charset=UTF-8');
 
+// В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
+// и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   
   $messages = array();
@@ -111,47 +114,47 @@ else {
   }
   
   if (!isset($_POST['radio-pol'])) {
-  setcookie('pol_error', '1', time() + 24 * 60 * 60);
-  setcookie('pol_value', '', 100000);
-  $errors = TRUE;
-}
+    setcookie('pol_error', '1', time() + 24 * 60 * 60);
+    setcookie('pol_value', '', 100000);
+    $errors = TRUE;
+  }
   else {
-  setcookie('pol_value', $_POST['radio-pol'], time() + 12 * 30 * 24 * 60 * 60);
-  setcookie('pol_error','',100000);
-}
+    setcookie('pol_value', $_POST['radio-pol'], time() + 12 * 30 * 24 * 60 * 60);
+    setcookie('pol_error','',100000);
+  }
   
   if (!isset($_POST['radio-limb'])) {
-  setcookie('limb_error', '1', time() + 24 * 60 * 60);
-  setcookie('limb_value', '', 100000);
-  $errors = TRUE;
-}
+    setcookie('limb_error', '1', time() + 24 * 60 * 60);
+    setcookie('limb_value', '', 100000);
+    $errors = TRUE;
+  }
   else {
-  setcookie('limb_value', $_POST['radio-limb'], time() + 12 * 30 * 24 * 60 * 60);
-  setcookie('limb_error','',100000);
-}
+    setcookie('limb_value', $_POST['radio-limb'], time() + 12 * 30 * 24 * 60 * 60);
+    setcookie('limb_error','',100000);
+ }
   
   if (!isset($_POST['field-super'])) {
-  setcookie('super_error', '1', time() + 24 * 60 * 60);
-  setcookie('immortal_value', '', 100000);
-  setcookie('noclip_value', '', 100000);
-  setcookie('power_value', '', 100000);
-  setcookie('telepat_value', '', 100000);
-  $errors = TRUE;
-}
+    setcookie('super_error', '1', time() + 24 * 60 * 60);
+    setcookie('immortal_value', '', 100000);
+    setcookie('noclip_value', '', 100000);
+    setcookie('power_value', '', 100000);
+    setcookie('telepat_value', '', 100000);
+    $errors = TRUE;
+  }
   else {
-  $powrs=$_POST['field-super'];
-  $apw=array(
-    "immortal_value"=>0,
-    "noclip_value"=>0,
-    "power_value"=>0
-    "telepat_value"=>0
-  );
+    $powrs=$_POST['field-super'];
+    $apw=array(
+      "immortal_value"=>0,
+      "noclip_value"=>0,
+      "power_value"=>0
+      "telepat_value"=>0
+    );
   foreach($powrs as $pwer){
     if($pwer=='immortal'){setcookie('immortal_value', 1, time() + 12 * 30 * 24 * 60 * 60); $apw['immortal_value']=1;} 
     if($pwer=='noclip'){setcookie('noclip_value', 1, time() + 12*30 * 24 * 60 * 60);$apw['noclip_value']=1;} 
     if($pwer=='power'){setcookie('power_value', 1, time() + 12*30 * 24 * 60 * 60);$apw['power_value']=1;} 
     if($pwer=='telepat'){setcookie('telepat_value', 1, time() + 12*30 * 24 * 60 * 60);$apw['telepat_value']=1;}
-  }
+    }
   foreach($apw as $c=>$val){
     if($val==0){
       setcookie($c,'',100000);
@@ -170,19 +173,14 @@ else {
   }
   
   if(!isset($_POST['checkbox'])){
-  setcookie('check_error','1',time()+ 24 * 60 * 60);
-  setcookie('check_value', '', 100000);
-  $errors=TRUE;
-}
-else{
-  setcookie('check_value', TRUE,time()+ 12 * 30 * 24 * 60 * 60);
-  setcookie('check_error','',100000);
-}
-
-// *************
-// TODO: тут необходимо проверить правильность заполнения всех остальных полей.
-// Сохранить в Cookie признаки ошибок и значения полей.
-// *************
+    setcookie('check_error','1',time()+ 24 * 60 * 60);
+    setcookie('check_value', '', 100000);
+    $errors=TRUE;
+  }
+  else{
+    setcookie('check_value', TRUE,time()+ 12 * 30 * 24 * 60 * 60);
+    setcookie('check_error','',100000);
+  }
 
   if ($errors) {
     // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
@@ -191,12 +189,57 @@ else{
   }
   else {
     // Удаляем Cookies с признаками ошибок.
-    setcookie('fio_error', '', 100000);
-    // TODO: тут необходимо удалить остальные Cookies.
+    setcookie('name_error', '', 100000);
+    setcookie('email_error', '', 100000);
+    setcookie('year_error', '', 100000);
+    setcookie('pol_error', '', 100000);
+    setcookie('limb_error', '', 100000);
+    setcookie('super_error', '', 100000);
+    setcookie('bio_error', '', 100000);
+    setcookie('check_error', '', 100000);
   }
+  
+  $name = $_POST['field-name'];
+  $email = $_POST['field-email'];
+  $birth_year = $_POST['year'];
+  $pol = $_POST['radio-pol'];
+  $limbs = intval($_POST['radio-limb']);
+  $superpowers = $_POST['field-super'];
+  $bio= $_POST['field-bio'];
 
   // Сохранение в БД.
-  // ...
+  $user = 'u41028';
+  $pass = '2356452';
+  $db = new PDO('mysql:host=localhost;dbname=u41028', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+   try {
+    $stmt = $db->prepare("INSERT INTO application SET name=:name, email=:email, year=:byear, pol=:pol, konech=:limbs, biogr=:bio");
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':byear', $birth_year);
+    $stmt->bindParam(':pol', $pol);
+    $stmt->bindParam(':limbs', $limbs);
+    $stmt->bindParam(':bio', $bio);
+    if($stmt->execute()==false){
+    print_r($stmt->errorCode());
+    print_r($stmt->errorInfo());
+    exit();
+    }
+    $id = $db->lastInsertId();
+    $sppe= $db->prepare("INSERT INTO superp SET name=:name, per_id=:person");
+    $sppe->bindParam(':person', $id);
+    foreach($superpowers as $inserting){
+  	$sppe->bindParam(':name', $inserting);
+  	if($sppe->execute()==false){
+	    print_r($sppe->errorCode());
+	    print_r($sppe->errorInfo());
+	    exit();
+  	}
+    }
+  }
+  catch(PDOException $e){
+    print('Error : ' . $e->getMessage());
+    exit();
+  }
 
   // Сохраняем куку с признаком успешного сохранения.
   setcookie('save', '1');
