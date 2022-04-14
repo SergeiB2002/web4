@@ -76,7 +76,19 @@ if (!empty($messages)) {
 
       <label>
         Год рождения:<br />
-        <select id="ddlYears" name="year" <?php if ($errors['year']) {print 'class="error"';} ?>> </select>
+        <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>> 
+	  <option value="Год">Год рождения</option>
+           <?php
+             for($i=1890;$i<=2022;$i++){
+             if($values['year']==$i){
+             printf("<option value=%d selected>%d </option>",$i,$i);
+              }
+             else{
+             printf("<option value=%d>%d </option>",$i,$i);
+            }
+          }
+          ?>
+         </select>
       </label><br />
 	  
 	  Пол:<br />
@@ -133,28 +145,4 @@ if (!empty($messages)) {
       <input type="submit" value="Send" />
     </form>
    </div>
-	   
-    <script type="text/javascript">
-        window.onload = function () {
-            var ddlYears = document.getElementById("ddlYears");
-            var currentYear = (new Date()).getFullYear();
-            for (var i = 1950; i <= currentYear; i++) {
-		    if ($value['year']==i){
-			    
-		    var option = document.createElement("OPTION");
-                    option.innerHTML = i;
-                    option.value = i;
-			      option.selected=true;
-                    ddlYears.appendChild(option);
-			  
-		    }
-		    else{
-			   var option = document.createElement("OPTION");
-                           option.innerHTML = i;
-                           option.value = i;
-                           ddlYears.appendChild(option);
-		    }
-            }
-        };
-    </script>
 </body>
