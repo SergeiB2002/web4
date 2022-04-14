@@ -103,7 +103,7 @@ else {
     setcookie('email_error', '', 100000);
   }
   
-  if (empty($_POST['year'])) {
+  if ($_POST['year']=='Год') {
     setcookie('year_error', '1', time() + 24 * 60 * 60);
     setcookie('year_value', '', 100000);
     $errors = TRUE;
