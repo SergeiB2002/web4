@@ -109,7 +109,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('year_value', $_POST['year'], time() + 12 * 30 * 24 * 60 * 60);
+    setcookie('year_value', intval($_POST['year']), time() + 12 * 30 * 24 * 60 * 60);
     setcookie('year_error', '', 100000);
   }
   
