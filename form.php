@@ -62,13 +62,13 @@ if (!empty($messages)) {
 
       <label>
         Имя:<br />
-        <input type="text" name="field-name" <?php if ($errors['field-name']) {print 'class="error"';} ?>
+        <input type="text" name="field-name" placeholder="Name" <?php if ($errors['field-name']) {print 'class="error"';} ?>
           value="<?php print $values['field-name']; ?>" />
       </label><br />
 
       <label>
         Еmail:<br />
-        <input name="field-email" type="email"
+        <input name="field-email" type="email" placeholder="Email"
           value="<?php print $values['field-email']; ?>"
 	<?php if ($errors['field-email']) {print 'class="error"';} ?>
 	/>
@@ -131,7 +131,7 @@ if (!empty($messages)) {
 	  
       <label>
         Биография:<br />
-        <textarea name="field-bio"> <?php print $values['field-bio']; ?> </textarea>
+        <textarea name="field-bio" placeholder="Write something pls"> <?php print $values['field-bio']; ?> </textarea>
       </label><br />
 
       Чекбокс:<br />
