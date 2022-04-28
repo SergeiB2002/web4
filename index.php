@@ -29,11 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   // Выдаем сообщения об ошибках.
   if ($errors['field-name']) {
     setcookie('name_error', '', 100000);
-    $messages[] = '<div class="error">Заполните имя.</div>';
+    $messages[] = '<div class="error">Заполните имя или у него неверный формат (only English)</div>';
   }
   if ($errors['field-email']) {
     setcookie('email_error', '', 100000);
-    $messages[] = '<div class="error">Заполните имейл.</div>';
+    $messages[] = '<div class="error">Заполните имейл или у него неверный формат</div>';
   }
   if ($errors['year']) {
     setcookie('year_error', '', 100000);
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
   if ($errors['field-bio']) {
     setcookie('bio_error', '', 100000);
-    $messages[] = '<div class="error">Заполните биографию.</div>';
+    $messages[] = '<div class="error">Заполните биографию или у неё неверный формат (only English)</div>';
   }
   if ($errors['checkbox']) {
     setcookie('check_error', '', 100000);
@@ -79,10 +79,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   // сообщений, полей с ранее заполненными данными и признаками ошибок.
   include('form.php');
 }
+//Регулярные выражения
+$bioregex = "/^\s*\w+[\w\s\.,-]*$/";
+$nameregex = "/^\w+[\w\s-]*$/";
+$mailregex = "/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/";
 else {
   // Проверяем ошибки.
   $errors = FALSE;
-  if (empty($_POST['field-name'])) {
+  if ((empty($_POST['field-name'])) || (!preg_match($nameregex,$_POST['field-name']))) {
     setcookie('name_error', '1', time() + 24 * 60 * 60);
     setcookie('name_value', '', 100000);
     $errors = TRUE;
@@ -93,7 +97,7 @@ else {
     setcookie('name_error', '', 100000);
   }
   
-  if (empty($_POST['field-email'])) {
+  if ((empty($_POST['field-email'])) || (!preg_match($mailregex,$_POST['field-email']))) {
     setcookie('email_error', '1', time() + 24 * 60 * 60);
     setcookie('email_value', '', 100000);
     $errors = TRUE;
@@ -162,7 +166,7 @@ else {
   }
 }
   
-  if (empty($_POST['field-bio'])) {
+  if (empty($_POST['field-bio'])) || (!preg_match($bioregex,$_POST['field-bio']))) {
     setcookie('bio_error', '1', time() + 24 * 60 * 60);
     setcookie('bio_value', '', 100000);
     $errors = TRUE;
