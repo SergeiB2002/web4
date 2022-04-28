@@ -167,7 +167,7 @@ else {
   }
 }
   
-  if (empty($_POST['field-bio'])) || (!preg_match($bioregex,$_POST['field-bio']))) {
+  if ((empty($_POST['field-bio'])) || (!preg_match($bioregex,$_POST['field-bio']))) {
     setcookie('bio_error', '1', time() + 24 * 60 * 60);
     setcookie('bio_value', '', 100000);
     $errors = TRUE;
