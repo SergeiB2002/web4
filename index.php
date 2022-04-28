@@ -79,11 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   // сообщений, полей с ранее заполненными данными и признаками ошибок.
   include('form.php');
 }
-//Регулярные выражения
-$bioregex = "/^\s*\w+[\w\s\.,-]*$/";
-$nameregex = "/^\w+[\w\s-]*$/";
-$mailregex = "/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/";
 else {
+  //Регулярные выражения
+  $bioregex = "/^\s*\w+[\w\s\.,-]*$/";
+  $nameregex = "/^\w+[\w\s-]*$/";
+  $mailregex = "/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/";
+	
   // Проверяем ошибки.
   $errors = FALSE;
   if ((empty($_POST['field-name'])) || (!preg_match($nameregex,$_POST['field-name']))) {
